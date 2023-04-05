@@ -9,7 +9,7 @@ module.exports = {
       schemas: "types/openapi/schemas",
       mode: "tags-split",
       clean: true,
-      mock: true,
+      mock: false,
       override: {
         header: info => [
           ...(info.title ? [info.title] : []),
@@ -22,7 +22,7 @@ module.exports = {
       },
     },
     hooks: {
-      afterAllFilesWrite: ["npm run prettier --write"],
+      afterAllFilesWrite: ["npm run prettier"],
     },
   },
 };

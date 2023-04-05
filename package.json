@@ -5,14 +5,17 @@
   "main": "orval.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prettier": "prettier --check ./types",
-    "orval": "npx orval@6.10.3"
+    "prettier": "prettier --check ./types --write",
+    "orval": "npx orval"
   },
   "dependencies": {
-    "msw": "1.0.1"
+    "msw": "1.0.1",
+    "axios": "1.3.2"
   },
   "devDependencies": {
     "@faker-js/faker": "7.6.0",
-    "prettier": "2.8.4"
+    "prettier": "2.8.4",
+    "ts-loader": "9.4.2",
+    "typescript": "4.9.5"
   }
 }
