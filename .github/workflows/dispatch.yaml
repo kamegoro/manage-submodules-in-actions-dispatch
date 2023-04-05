@@ -1,0 +1,17 @@
+name: Update Submodule
+
+on:
+  repository_dispatch:
+    types: [openapi-update]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3
+
+      - name: Echo log
+        run: |
+          echo "Eventをキャッチしました"
