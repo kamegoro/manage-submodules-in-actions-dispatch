@@ -45,7 +45,7 @@ jobs:
       - name: Create Branch Name
         env:
           TZ: "Asia/Tokyo"
-        run: echo "BRANCH=feature/Update-submodules-$(date +'%Y-%m-%d_%H-%M')" >> $SUBMODULE_BRANCH_NAME
+        run: echo "SUBMODULE_BRANCH_NAME=feature/Update-submodules-$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
 
       - name: Create new Branch
         if: ${{ steps.status.outputs.status }}
