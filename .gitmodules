@@ -1,3 +1,4 @@
 [submodule "kamegoro-openapi"]
 	path = kamegoro-openapi
 	url = https://github.com/kamegoro/create-repository-check-operation-of-dispatch-events.git
+  ignore = dirty

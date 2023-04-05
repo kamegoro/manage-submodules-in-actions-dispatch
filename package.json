@@ -1,0 +1,13 @@
+{
+  "name": "manage-submodules-in-actions-dispatch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "orval.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --check ./types"
+  },
+  "devDependencies": {
+    "prettier": "2.8.4"
+  }
+}
