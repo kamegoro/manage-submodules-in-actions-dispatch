@@ -5,9 +5,14 @@
   "main": "orval.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prettier": "prettier --check ./types"
+    "prettier": "prettier --check ./types",
+    "orval": "npx orval@6.10.3"
+  },
+  "dependencies": {
+    "msw": "1.0.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "7.6.0",
     "prettier": "2.8.4"
   }
 }

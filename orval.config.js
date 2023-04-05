@@ -19,14 +19,10 @@ module.exports = {
           "Orvalで自動生成したファイルです。",
           "手動で編集した内容は再生成時に削除されてしまうので直接編集しないでください",
         ],
-        mutator: {
-          path: "src/utils/axios/client.ts",
-          name: "axiosClient",
-        },
       },
     },
     hooks: {
-      afterAllFilesWrite: ["npm prettier --write"],
+      afterAllFilesWrite: ["npm run prettier --write"],
     },
   },
 };
