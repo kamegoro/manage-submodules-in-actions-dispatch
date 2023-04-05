@@ -42,11 +42,15 @@ jobs:
         if: ${{ steps.status.outputs.status }}
         run: npm run orval
 
+      - name: Create Branch Name
+        env:
+          TZ: "Asia/Tokyo"
+        run: echo "BRANCH=feature/Update-submodules-$(date +'%Y-%m-%d_%H-%M')" >> $SUBMODULE_BRANCH_NAME
+
       - name: Create new Branch
         if: ${{ steps.status.outputs.status }}
         id: branch
         run: |
-          echo "BRANCH=feature/Update-submodules-$(date +'%Y-%m-%d-%H-%M-%S')" >> $SUBMODULE_BRANCH_NAME
           git checkout -b ${{ env.SUBMODULE_BRANCH_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
