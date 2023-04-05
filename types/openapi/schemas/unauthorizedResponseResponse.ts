@@ -1,7 +1,7 @@
 /**
- * My API Spec
- * My Sampe API Specification.</br>
-It works for me.
+ * Test OpenAPI
+ * Test OpenAPI Specification.</br>
+It works for me!.
  * OpenAPI spec version: 1.0.0
  * 
  * Orvalで自動生成したファイルです。
