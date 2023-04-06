@@ -10,13 +10,13 @@ permissions:
   pull-requests: write
 
 jobs:
-  Update_Submodules:
+  check_submodules_for_updates:
     timeout-minutes: 10
 
     runs-on: ubuntu-latest
 
     outputs:
-      matrix: ${{ steps.pr-lists.outputs.value }}
+      pr-lists: ${{ steps.pr-lists.outputs.pr-lists }}
       status: ${{ steps.status.outputs.status }}
 
     steps:
@@ -38,8 +38,7 @@ jobs:
         if: ${{ steps.status.outputs.status }}
         run: |
           pr_list=$(gh pr list --label "submodule" --json number | jq '[.[].number]')
-          echo $pr_list
-          echo "value=$(echo $pr_list | jq -c .)" >> $GITHUB_OUTPUT
+          echo "pr-lists=$(echo $pr_list | jq -c .)" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -86,3 +85,18 @@ jobs:
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  close_old_pr:
+    needs: check_submodules_for_updates
+    if: needs.check_submodules_for_updates.outputs.status && needs.check_submodules_for_updates.outputs.pr-lists
+
+    timeout-minutes: 10
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Print pr lists
+        run: |
+          echo ${{ needs.check_submodules_for_updates.outputs.pr-lists }}
