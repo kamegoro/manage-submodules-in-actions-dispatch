@@ -15,6 +15,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    outputs:
+      matrix: ${{ steps.pr-lists.outputs.value }}
+      status: ${{ steps.status.outputs.status }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -28,6 +32,16 @@ jobs:
       - name: Run git status
         id: status
         run: echo "status=$(git status -s)" >> $GITHUB_OUTPUT
+
+      - name: Get Submodule PR
+        id: pr-lists
+        if: ${{ steps.status.outputs.status }}
+        run: |
+          pr_list=$(gh pr list --label "submodule" --json number | jq '[.[].number]')
+          echo $pr_list
+          echo "value=$(echo $pr_list | jq -c .)" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Node.js
         if: ${{ steps.status.outputs.status }}
