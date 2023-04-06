@@ -27,7 +27,7 @@ jobs:
 
       - name: Run git status
         id: status
-        run: echo "status=$(git status -s) >> $GITHUB_OUTPUT"
+        run: echo "status=$(git status -s)" >> $GITHUB_OUTPUT
 
       - name: Install Node.js
         if: ${{ steps.status.outputs.status }}
