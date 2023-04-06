@@ -39,10 +39,6 @@ jobs:
         if: ${{ steps.status.outputs.status }}
         run: npm install
 
-      - name: Generate Orval
-        if: ${{ steps.status.outputs.status }}
-        run: npm run orval
-
       - name: Create Branch Name
         env:
           TZ: "Asia/Tokyo"
@@ -55,6 +51,10 @@ jobs:
           git checkout -b ${{ env.SUBMODULE_BRANCH_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate Orval
+        if: ${{ steps.status.outputs.status }}
+        run: npm run orval
 
       - name: commit and push files
         if: ${{ steps.status.outputs.status }}
