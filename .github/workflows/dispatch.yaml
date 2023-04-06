@@ -93,10 +93,14 @@ jobs:
     timeout-minutes: 10
 
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        value: ${{ fromJson(needs.check_submodules_for_updates.outputs.pr-lists) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Print pr lists
+      - name: Close PR
         run: |
-          echo ${{ needs.check_submodules_for_updates.outputs.pr-lists }}
+          gh pr close ${{ matrix.value }} --delete-branch
