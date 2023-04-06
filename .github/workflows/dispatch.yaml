@@ -62,13 +62,13 @@ jobs:
           git add .
           git config --local user.email "tentyo0620@icloud.com"
           git config --local user.name "kamegoro"
-          git commit -m "Update submodules at $(date "+DATE: %Y-%m-%d TIME: %H:%M:%S")"
+          git commit -m "Update submodules at $(date "+%Y-%m-%d %H:%M:%S")"
           git push origin ${{ env.SUBMODULE_BRANCH_NAME }}
 
       - name: Create PR
         if: ${{ steps.status.outputs.status }}
         run: |
-          gh pr create -B main -H ${{ env.SUBMODULE_BRANCH_NAME }} --assignee kamegoro --title 'Update Submodules' --body 'Created by Github'
+          gh pr create -B main -H ${{ env.SUBMODULE_BRANCH_NAME }} --reviewer kamegoro --label submodule --title 'Update Submodules' --body 'Created by Github'
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
