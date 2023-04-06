@@ -68,6 +68,6 @@ jobs:
       - name: Create PR
         if: ${{ steps.status.outputs.status }}
         run: |
-          gh pr create -B main -H ${{ env.SUBMODULE_BRANCH_NAME }} --title 'Update Submodules' --body 'Created by Github' -a "@me"
+          gh pr create -B main -H ${{ env.SUBMODULE_BRANCH_NAME }} --title 'Update Submodules' --body 'Created by Github' -a "@kamegoro"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
