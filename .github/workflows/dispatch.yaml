@@ -42,6 +42,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get the latest merge PR for OpenAPI
+        id: openapi-pr
+        if: ${{ steps.status.outputs.status }}
+        run: |
+          openapi_pr=$(gh pr list --state merged --base main)
+          $(echo $openapi_pr)
+        env:
+          GITHUB_TOKEN: ${{ secrets.OPENAPI_GITHUB_TOKEN }}
+
       - name: Install Node.js
         if: ${{ steps.status.outputs.status }}
         uses: actions/setup-node@v3
@@ -53,6 +62,7 @@ jobs:
         run: npm install
 
       - name: Create Branch Name
+        if: ${{ steps.status.outputs.status }}
         env:
           TZ: "Asia/Tokyo"
         run: echo "SUBMODULE_BRANCH_NAME=feature/Update-submodules-$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
@@ -96,6 +106,7 @@ jobs:
     strategy:
       matrix:
         value: ${{ fromJson(needs.check_submodules_for_updates.outputs.pr-list) }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
