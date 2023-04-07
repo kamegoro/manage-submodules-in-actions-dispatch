@@ -87,7 +87,7 @@ jobs:
 
   close_old_pr:
     needs: check_submodules_for_updates
-    if: needs.check_submodules_for_updates.outputs.status && !contains(toJson(needs.check_submodules_for_updates.outputs.pr-list), [])
+    if: needs.check_submodules_for_updates.outputs.status && !contains(toJson(needs.check_submodules_for_updates.outputs.pr-list), '[]')
 
     timeout-minutes: 10
 
