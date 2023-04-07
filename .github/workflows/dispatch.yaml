@@ -87,7 +87,7 @@ jobs:
 
   close_old_pr:
     needs: check_submodules_for_updates
-    if: needs.check_submodules_for_updates.outputs.status && needs.check_submodules_for_updates.outputs.pr-lists
+    if: needs.check_submodules_for_updates.outputs.status && $(needs.check_submodules_for_updates.outputs.pr-lists | jq '. | length') > 0
 
     timeout-minutes: 10
 
