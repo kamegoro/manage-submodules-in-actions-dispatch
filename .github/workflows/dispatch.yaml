@@ -95,13 +95,13 @@ jobs:
 
     strategy:
       matrix:
-        pr_number: ${{ fromJson(needs.check_submodules_for_updates.outputs.pr-lists) }}
+        value: ${{ fromJson(needs.check_submodules_for_updates.outputs.pr-lists) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Close PR
         run: |
-          gh pr close ${{ matrix.pr_number }} --delete-branch
+          gh pr close ${{ matrix.value }} --delete-branch
         env:
           GITHUB_TOKEN: ${{ github.token }}
