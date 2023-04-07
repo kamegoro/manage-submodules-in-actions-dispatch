@@ -46,8 +46,8 @@ jobs:
         id: openapi-pr
         if: ${{ steps.status.outputs.status }}
         run: |
-          openapi_pr=$(gh pr list --state merged --base main)
-          $(echo $openapi_pr)
+          openapi_pr=$(gh pr list --state merged --base main --limit 1)
+          echo $openapi_pr
         env:
           GITHUB_TOKEN: ${{ secrets.OPENAPI_GITHUB_TOKEN }}
 
