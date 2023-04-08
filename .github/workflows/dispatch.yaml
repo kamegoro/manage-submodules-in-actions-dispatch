@@ -99,8 +99,8 @@ jobs:
             -H ${{ env.SUBMODULE_BRANCH_NAME }} \
             --reviewer kamegoro \
             --label submodule \
-            --title ${{ steps.openapi-pr.outputs.merged-pr.title }} \
-            --body 'Created by Github' \
+            --title ${{ fromJson(steps.openapi-pr.outputs.merged-pr).title }} \
+            --body 'Created by Github'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
