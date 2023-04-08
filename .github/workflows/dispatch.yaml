@@ -100,7 +100,15 @@ jobs:
             --reviewer kamegoro \
             --label submodule \
             --title ${{ fromJson(steps.openapi-pr.outputs.merged-pr).title }} \
-            --body 'Created by Github'
+            --body "
+              ## 修正内容
+
+              - ${{ fromJson(steps.openapi-pr.outputs.merged-pr).body }}
+
+              ## PR
+
+              - [${{ fromJson(steps.openapi-pr.outputs.merged-pr).title }}](${{ fromJson(steps.openapi-pr.outputs.merged-pr).html_url }})
+            "
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
