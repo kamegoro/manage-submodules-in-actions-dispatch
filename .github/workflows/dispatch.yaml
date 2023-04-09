@@ -101,13 +101,11 @@ jobs:
             --label submodule \
             --title ${{ fromJson(steps.openapi-pr.outputs.merged-pr).title }} \
             --body "
-          ## 修正内容
+          ## OpenAPIの更新
 
-          - ${{ fromJson(steps.openapi-pr.outputs.merged-pr).body }}
+          - [#${{ fromJson(steps.openapi-pr.outputs.merged-pr).number }} ${{ fromJson(steps.openapi-pr.outputs.merged-pr).title }}](${{ fromJson(steps.openapi-pr.outputs.merged-pr).html_url }})
 
-          ## PR
-
-          - [${{ fromJson(steps.openapi-pr.outputs.merged-pr).title }}](${{ fromJson(steps.openapi-pr.outputs.merged-pr).html_url }})
+          ${{ fromJson(steps.openapi-pr.outputs.merged-pr).body }}
           "
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
