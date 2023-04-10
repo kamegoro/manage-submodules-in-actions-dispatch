@@ -1,7 +1,7 @@
 /**
  * Test OpenAPI
  * Test OpenAPI Specification.</br>
-It works.
+It works!!.
  * OpenAPI spec version: 1.0.0
  * 
  * Orvalで自動生成したファイルです。
