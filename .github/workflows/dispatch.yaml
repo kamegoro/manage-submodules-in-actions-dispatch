@@ -49,7 +49,7 @@ jobs:
           merged_pr=$(
             curl -L \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.OPENAPI_GITHUB_TOKEN }}" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/search/issues?q=repo:kamegoro/create-repository-check-operation-of-dispatch-events+is:pr+is:merged
           )
           echo "merged-pr=$(echo $merged_pr | jq '.items[0]' | jq -c .)" >> $GITHUB_OUTPUT
