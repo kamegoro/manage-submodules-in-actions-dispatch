@@ -20,17 +20,9 @@ jobs:
       status: ${{ steps.status.outputs.status }}
 
     steps:
-      - name: Get GitHub API token 🔐
-        id: get-github-token
-        uses: getsentry/action-github-app-token@v1
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.APP_PRIVATE_KEY }}
-
-      - name: Checkout 🛎
+      - name: Checkout
         uses: actions/checkout@v3
         with:
-          token: ${{ steps.get-github-token.outputs.token }}
           submodules: recursive
 
       - name: Update submodules
@@ -57,7 +49,7 @@ jobs:
           merged_pr=$(
             curl -L \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ steps.get-github-token.outputs.token }}" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/search/issues?q=repo:kamegoro/create-repository-check-operation-of-dispatch-events+is:pr+is:merged
           )
           echo "merged-pr=$(echo $merged_pr | jq '.items[0]' | jq -c .)" >> $GITHUB_OUTPUT
@@ -107,7 +99,7 @@ jobs:
             -H ${{ env.SUBMODULE_BRANCH_NAME }} \
             --reviewer kamegoro \
             --label submodule \
-            --title ${{ fromJson(steps.openapi-pr.outputs.merged-pr).title }} \
+            --title "${{ fromJson(steps.openapi-pr.outputs.merged-pr).title }}" \
             --body "
           ## OpenAPIの更新
 
