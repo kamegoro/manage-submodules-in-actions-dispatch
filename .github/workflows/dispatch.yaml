@@ -20,9 +20,17 @@ jobs:
       status: ${{ steps.status.outputs.status }}
 
     steps:
-      - name: Checkout
+      - name: Get GitHub API token 🔐
+        id: get-github-token
+        uses: getsentry/action-github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Checkout 🛎
         uses: actions/checkout@v3
         with:
+          token: ${{ steps.get-github-token.outputs.token }}
           submodules: recursive
 
       - name: Update submodules
