@@ -35,17 +35,15 @@ jobs:
 
       - name: Get GitHub API token 🔐
         id: get-github-token
-        uses: getsentry/action-github-app-token@v1
+        uses: getsentry/action-github-app-token@v2
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
-        env:
-          GH_APP_TOKEN: ${{ steps.gh_app_token.outputs.token }}
 
       - name: Checkout 🛎
         uses: actions/checkout@v3
         with:
-          token: $GH_APP_TOKEN
+          token: ${{ steps.get-github-token.outputs.token }}
           submodules: recursive
 
       - name: Update submodules
@@ -72,7 +70,7 @@ jobs:
           merged_pr=$(
             curl -L \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $GH_APP_TOKEN" \
+            -H "Authorization: Bearer ${{ steps.get-github-token.outputs.token }}" \
             https://api.github.com/search/issues?q=repo:kamegoro/create-repository-check-operation-of-dispatch-events+is:pr+is:merged
           )
           echo "merged-pr=$(echo $merged_pr | jq '.items[0]' | jq -c .)" >> $GITHUB_OUTPUT
