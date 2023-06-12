@@ -128,14 +128,6 @@ jobs:
           ${{ fromJson(steps.openapi-pr.outputs.merged-pr).body }}
           "
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Add Submodule Label
-        run: |
-          pr_list=$(gh pr list)
-          pr_number=$(echo "$pr_list" | grep -m 1 "#[0-9]" | awk '{print $1}' | cut -c 2-)
-          gh pr edit $pr_number --add-label "submodule"
-        env:
           GITHUB_TOKEN: ${{ steps.get-github-token.outputs.token }}
 
   close_old_pr:
