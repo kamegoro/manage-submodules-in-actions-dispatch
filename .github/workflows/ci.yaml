@@ -9,7 +9,7 @@ permissions:
   contents: "read"
 
 jobs:
-  Next-Lint:
+  Lint:
     name: ci
 
     timeout-minutes: 10
@@ -19,10 +19,6 @@ jobs:
     strategy:
       matrix:
         node-version: [18]
-
-    defaults:
-      run:
-        working-directory: frontend
 
     steps:
       - name: Checkout
@@ -37,4 +33,4 @@ jobs:
         run: npm install
 
       - name: Lint
-        run: npm run lint
+        run: npm run prettier:check
