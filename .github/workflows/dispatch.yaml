@@ -126,7 +126,7 @@ jobs:
           - [#${{ fromJson(steps.openapi-pr.outputs.merged-pr).number }} ${{ fromJson(steps.openapi-pr.outputs.merged-pr).title }}](${{ fromJson(steps.openapi-pr.outputs.merged-pr).html_url }})
 
           ${{ fromJson(steps.openapi-pr.outputs.merged-pr).body }}
-          ")
+          " --json)
           pr_number=$(echo "$pr_info" | jq -r '.number')
           echo "PR_NUMBER=$pr_number" >> $GITHUB_ENV
         env:
