@@ -115,11 +115,10 @@ jobs:
       - name: Create PR
         if: ${{ steps.status.outputs.status }}
         run: |
-          gh pr create \
+          pr_info=$(gh pr create \
             -B main \
             -H ${{ env.SUBMODULE_BRANCH_NAME }} \
             --reviewer kamegoro \
-            --label submodule \
             --title "${{ fromJson(steps.openapi-pr.outputs.merged-pr).title }}" \
             --body "
           ## OpenAPIの更新
@@ -127,9 +126,15 @@ jobs:
           - [#${{ fromJson(steps.openapi-pr.outputs.merged-pr).number }} ${{ fromJson(steps.openapi-pr.outputs.merged-pr).title }}](${{ fromJson(steps.openapi-pr.outputs.merged-pr).html_url }})
 
           ${{ fromJson(steps.openapi-pr.outputs.merged-pr).body }}
-          "
+          ")
+          pr_number=$(echo "$pr_info" | jq -r '.number')
+          echo "PR_NUMBER=$pr_number" >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add Submodule Label
+        run: |
+          gh pr label add ${{ env.PR_NUMBER }} --label "submodule"
 
   close_old_pr:
     needs: check_submodules_for_updates

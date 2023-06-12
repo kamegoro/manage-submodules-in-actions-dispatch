@@ -20,10 +20,6 @@ jobs:
       matrix:
         node-version: [18]
 
-    defaults:
-      run:
-        working-directory: frontend
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
