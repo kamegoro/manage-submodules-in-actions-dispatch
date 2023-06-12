@@ -132,7 +132,8 @@ jobs:
 
       - name: Add Submodule Label
         run: |
-          pr_number=$(gh pr list -L 1 | awk '{print $1}' | cut -c 2-)
+          pr_list=$(gh pr list)
+          pr_number=$(echo "$pr_list" | grep -m 1 "#[0-9]" | awk '{print $1}' | cut -c 2-)
           gh pr label add $pr_number --label "submodule"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
