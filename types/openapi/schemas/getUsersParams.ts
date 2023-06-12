@@ -1,6 +1,6 @@
 /**
  * Test OpenAPI
- * Test OpenAPI Specification.</br>
+ * Test OpenAPI Specification.
 It works.
  * OpenAPI spec version: 1.0.0
  * 
