@@ -26,7 +26,7 @@ import type {
  */
 export const postUsers = <TData = AxiosResponse<CreateUserResponseResponse>>(
   createUserRequestBodyBody: CreateUserRequestBodyBody,
-  options?: AxiosRequestConfig
+  options?: AxiosRequestConfig,
 ): Promise<TData> => {
   return axios.post(`/users`, createUserRequestBodyBody, options);
 };
@@ -36,7 +36,7 @@ export const postUsers = <TData = AxiosResponse<CreateUserResponseResponse>>(
  */
 export const getUsers = <TData = AxiosResponse<GetUsersResponseResponse>>(
   params?: GetUsersParams,
-  options?: AxiosRequestConfig
+  options?: AxiosRequestConfig,
 ): Promise<TData> => {
   return axios.get(`/users`, {
     ...options,
@@ -48,7 +48,7 @@ export const getUsers = <TData = AxiosResponse<GetUsersResponseResponse>>(
  * @summary GetUserByMine
  */
 export const getUsersMe = <TData = AxiosResponse<GetUserResponseResponse>>(
-  options?: AxiosRequestConfig
+  options?: AxiosRequestConfig,
 ): Promise<TData> => {
   return axios.get(`/users/me`, options);
 };
@@ -58,7 +58,7 @@ export const getUsersMe = <TData = AxiosResponse<GetUserResponseResponse>>(
  */
 export const getUsersId = <TData = AxiosResponse<GetUserResponseResponse>>(
   id: string,
-  options?: AxiosRequestConfig
+  options?: AxiosRequestConfig,
 ): Promise<TData> => {
   return axios.get(`/users/${id}`, options);
 };
@@ -70,7 +70,7 @@ export const putUsersId = <TData = AxiosResponse<CreateUserResponseResponse>>(
   id: string,
   updateUserRequestBodyBody: UpdateUserRequestBodyBody,
   params: PutUsersIdParams,
-  options?: AxiosRequestConfig
+  options?: AxiosRequestConfig,
 ): Promise<TData> => {
   return axios.put(`/users/${id}`, updateUserRequestBodyBody, {
     ...options,
@@ -82,11 +82,11 @@ export const putUsersId = <TData = AxiosResponse<CreateUserResponseResponse>>(
  * @summary DeleteUserById
  */
 export const deleteUsersId = <
-  TData = AxiosResponse<CreateUserResponseResponse>
+  TData = AxiosResponse<CreateUserResponseResponse>,
 >(
   id: string,
   params: DeleteUsersIdParams,
-  options?: AxiosRequestConfig
+  options?: AxiosRequestConfig,
 ): Promise<TData> => {
   return axios.delete(`/users/${id}`, {
     ...options,
