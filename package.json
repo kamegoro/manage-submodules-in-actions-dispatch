@@ -10,7 +10,7 @@
     "orval": "npx orval"
   },
   "dependencies": {
-    "msw": "2.0.0",
+    "msw": "2.0.1",
     "axios": "1.6.0"
   },
   "devDependencies": {
