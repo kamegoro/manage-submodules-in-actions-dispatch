@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "msw": "2.2.3",
-    "axios": "1.6.7"
+    "axios": "1.6.8"
   },
   "devDependencies": {
     "@faker-js/faker": "8.4.1",
