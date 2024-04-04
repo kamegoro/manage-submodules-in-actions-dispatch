@@ -17,6 +17,6 @@
     "@faker-js/faker": "8.4.1",
     "prettier": "3.2.5",
     "ts-loader": "9.5.1",
-    "typescript": "5.4.3"
+    "typescript": "5.4.4"
   }
 }
