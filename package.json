@@ -10,13 +10,13 @@
     "orval": "npx orval"
   },
   "dependencies": {
-    "msw": "2.3.5",
-    "axios": "1.7.3"
+    "axios": "1.21.1",
+    "msw": "2.15.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "8.4.1",
-    "prettier": "3.3.3",
-    "ts-loader": "9.5.1",
+    "@faker-js/faker": "10.6.0",
+    "prettier": "3.10.1",
+    "ts-loader": "9.6.2",
     "typescript": "5.5.4"
   }
 }
