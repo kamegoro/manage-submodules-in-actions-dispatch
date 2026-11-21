@@ -14,5 +14,6 @@ It works.
 export interface TimeStampsModel {
   createAt: string;
   updateAt?: string;
+  /** @minimum 1 */
   version: number;
 }

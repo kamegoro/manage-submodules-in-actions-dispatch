@@ -8,4 +8,4 @@ It works.
  * 手動で編集した内容は再生成時に削除されてしまうので直接編集しないでください
  */
 
-export type GetUsersResponseResponseAllOf = { [key: string]: any };
+export type GetUsersResponseResponseAllOf = { [key: string]: unknown };

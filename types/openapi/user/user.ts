@@ -9,15 +9,16 @@ It works.
  */
 import axios from "axios";
 import type { AxiosRequestConfig, AxiosResponse } from "axios";
+
 import type {
-  CreateUserResponseResponse,
   CreateUserRequestBodyBody,
-  GetUsersResponseResponse,
-  GetUsersParams,
-  GetUserResponseResponse,
-  UpdateUserRequestBodyBody,
-  PutUsersIdParams,
+  CreateUserResponseResponse,
   DeleteUsersIdParams,
+  GetUserResponseResponse,
+  GetUsersParams,
+  GetUsersResponseResponse,
+  PutUsersIdParams,
+  UpdateUserRequestBodyBody,
 } from ".././schemas";
 
 /**
@@ -93,3 +94,9 @@ export const deleteUsersId = <
     params: { ...params, ...options?.params },
   });
 };
+export type PostUsersResult = AxiosResponse<CreateUserResponseResponse>;
+export type GetUsersResult = AxiosResponse<GetUsersResponseResponse>;
+export type GetUsersMeResult = AxiosResponse<GetUserResponseResponse>;
+export type GetUsersIdResult = AxiosResponse<GetUserResponseResponse>;
+export type PutUsersIdResult = AxiosResponse<CreateUserResponseResponse>;
+export type DeleteUsersIdResult = AxiosResponse<CreateUserResponseResponse>;
