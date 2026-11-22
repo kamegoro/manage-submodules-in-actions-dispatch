@@ -12,6 +12,8 @@ It works.
  * Pagination model
  */
 export interface PaginationModel {
+  /** @minimum 1 */
   page: number;
+  /** @minimum 0 */
   total: number;
 }
